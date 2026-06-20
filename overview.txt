@@ -1,0 +1,25 @@
+start from html css  ;
+
+1.Router 
+( created routes using router = createBrowserRouter ;
+ making app main element and other element as children in it providing path and element.;
+then RouterProvider passed the value router .
+then** we passed outlet in app  so that i can become center. 
+then provide Link to and path like "/".)
+
+2.store 
+(
+  In index.js we created a configurestore which holds value .
+  then we created slices as items (things) we needed .
+  slices can be modified as need acc to actions .
+  then provide these slices to luvoStore(configureStore).
+  we provided these items above routes element so that it can be excess everywhere .
+  you access data using const element = useSelector((store) => store.data);
+)
+
+3.make things more interactive. working - now make sure data work correctly and design add button
+
+4.fetch from server 
+(
+  
+)

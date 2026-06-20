@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+	/* Brand & surfaces */
+	--brand: #c9a24d;
+	--text-1: #0b0b0b;
+	--text-2: #5a5a5a;
+	--bg-1: #ffffff;
+	--bg-2: #f7f7f7;
+	--surface: #ffffff;
+
+	/* Motion tokens */
+	--dur-1: 180ms;
+	--dur-2: 260ms;
+	--dur-3: 420ms;
+	--ease-out: cubic-bezier(.16,1,.3,1);
+	--ease-in-out: cubic-bezier(.4,0,.2,1);
+
+	/* Shadows */
+	--shadow-xs: 0 1px 4px rgba(0,0,0,.06);
+	--shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+	--shadow-md: 0 6px 20px rgba(0,0,0,.10);
+	--shadow-lg: 0 16px 40px rgba(0,0,0,.16);
+}
+
+/* Global smoothness */
+html { scroll-behavior: smooth; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Utility: premium hover states */
+.hover-elevate {
+	transition: transform var(--dur-2) var(--ease-out),
+							box-shadow var(--dur-2) var(--ease-out),
+							filter var(--dur-1) var(--ease-out);
+	will-change: transform, box-shadow, filter;
+}
+.hover-elevate:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-md); filter: saturate(1.04); }
+.hover-elevate:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+
+/* Links: animated underline */
+.link-underline {
+	background: linear-gradient(currentColor 0 0) 0 100% / 0 1px no-repeat;
+	transition: background-size var(--dur-2) var(--ease-out);
+}
+.link-underline:hover { background-size: 100% 1px; }
+
+/* Reveal utility (for non-React usage) */
+.reveal { opacity: 0; transform: translateY(16px); }
+.reveal--in { opacity: 1; transform: none; transition: opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out); }
+
+/* Skeleton shimmer */
+.skeleton {
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(90deg, var(--bg-2) 0%, #ececec 50%, var(--bg-2) 100%);
+	background-size: 200% 100%;
+	animation: shimmer 1.2s var(--ease-in-out) infinite;
+}
+
+@keyframes shimmer {
+	0% { background-position: -100% 0; }
+	100% { background-position: 100% 0; }
+}
+
+/* Horizontal scrolling list — hide scrollbars, keep scroll-snap */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Cursor follower base (optional usage) */
+.cursor-ring {
+	position: fixed;
+	left: 0; top: 0;
+	width: 24px; height: 24px;
+	border-radius: 999px;
+	border: 1px solid rgba(0,0,0,.35);
+	pointer-events: none;
+	mix-blend-mode: difference;
+	opacity: .6;
+	transform: translate(-50%, -50%);
+	transition: transform var(--dur-1) var(--ease-out);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+}
