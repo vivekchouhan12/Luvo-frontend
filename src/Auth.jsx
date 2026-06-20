@@ -15,13 +15,12 @@ export const AuthProvider = ({ children }) => {
         });
         if (res.ok) {
           const json = await res.json();
-          console.log("Auth: initial status ->", json);
           // backend returns { isLoggedIn }
           setIsLoggedIn(!!json.isLoggedIn);
         } else {
           setIsLoggedIn(false);
         }
-      } catch (err) {
+      } catch (err) { 
         setIsLoggedIn(false);
       } finally {
         setLoading(false);
@@ -49,7 +48,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(true);
     fetch("https://luvo-backend.vercel.app/auth/status", { credentials: "include" })
       .then(r => r.json())
-      .then(console.log)
+      .then(() => {})
       .catch(console.error);
   };
 
