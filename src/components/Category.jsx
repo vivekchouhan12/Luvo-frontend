@@ -42,7 +42,8 @@ const Category = () => {
           throw new Error("Unknown category");
         }
         const res = await fetch(
-          `https://luvo-backend.vercel.app/places?category=${categoryType}`
+          `https://luvo-backend.vercel.app/places?category=${categoryType}`,
+          { credentials: "include" }
         );
         if (!res.ok) throw new Error("Failed to fetch places");
         const data = await res.json();

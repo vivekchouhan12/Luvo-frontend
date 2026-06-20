@@ -14,7 +14,7 @@ const PlaceOverview = () => {
     const fetchPlace = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://luvo-backend.vercel.app/places/${placeid}`);
+        const res = await fetch(`https://luvo-backend.vercel.app/places/${placeid}`, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to fetch place");
         const data = await res.json();
         setPlace(data);
@@ -34,7 +34,7 @@ const PlaceOverview = () => {
     const fetchNearby = async () => {
       if (!place?.category) return;
       try {
-        const res = await fetch(`https://luvo-backend.vercel.app/places?category=${place.category}`);
+        const res = await fetch(`https://luvo-backend.vercel.app/places?category=${place.category}`, { credentials: "include" });
         if (!res.ok) return;
         const data = await res.json();
         const filtered = Array.isArray(data)

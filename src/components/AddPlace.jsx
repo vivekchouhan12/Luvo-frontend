@@ -95,6 +95,7 @@ const AddPlace = () => {
     setIsSubmitting(true);
     const res = await fetch("https://luvo-backend.vercel.app/places", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
